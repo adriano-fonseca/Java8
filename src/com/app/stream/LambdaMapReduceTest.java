@@ -3,6 +3,7 @@ package com.app.stream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BinaryOperator;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.app.lambda.FunctionSquareRoot;
@@ -31,15 +32,26 @@ public class LambdaMapReduceTest {
 //      listaNumber.stream().map(function).forEach(i -> System.out.println(i));
     
     //function contains definition to squareRoot
-    Stream ds = listaNumber.stream().map(function);
+    @SuppressWarnings("unused")
+    Stream<Integer> ds = listaNumber.stream().map(function);
 //    ds.forEach(System.out::println);
-    Integer sum = listaToReduce.stream().map(function).reduce(0,bo);
-    System.out.println(sum);
+    
+    System.out.print("The square root's sum from follow numbers: ");
+    IntStream.range(0, listaToReduce.size())
+    .mapToObj(i -> (i > 0 ? ", " : "") + listaToReduce.get(i))
+    .forEach(System.out::print);
+   
+    Integer sum = listaToReduce.stream().
+        map(function).
+        reduce(0,bo);
+   
+    System.out.print(" is "+sum);
   }
 
 
   //Without Lamda
   //listaNumber.stream().map(i -> i*i).forEach(i -> System.out.println(i));
+  @SuppressWarnings("unused")
   private static void printSquareRoot(List<Integer> listaNumber) {
     for(Integer i : listaNumber){
       System.out.println(i*i);
