@@ -7,36 +7,36 @@ import java.util.stream.Collectors;
 
 public class SumArray {
   public static void main(String args[]) {
-    Aluno a1 = new Aluno("Adriano");
-    a1.getNotas().add(10);
-    a1.getNotas().add(10);
-    a1.getNotas().add(10);
+    Student a1 = new Student("Adriano");
+    a1.getGrades().add(10);
+    a1.getGrades().add(10);
+    a1.getGrades().add(10);
     
-    Aluno a2 = new Aluno("Adriano");
-    a2.getNotas().add(5);
-    a2.getNotas().add(5);
-    a2.getNotas().add(5);
+    Student a2 = new Student("Adriano");
+    a2.getGrades().add(5);
+    a2.getGrades().add(5);
+    a2.getGrades().add(5);
     
-    List<Aluno> list = new ArrayList<Aluno>();
+    List<Student> list = new ArrayList<Student>();
     list.add(a2);
     list.add(a1);
 //    retornaNotasTodosAlunos(list);
     System.out.println(sumNotas2(a2));
   }
 
-  static int sumNotas(Aluno a) {
-    int sum = a.getNotas().stream().filter(i -> {
+  static int sumNotas(Student a) {
+    int sum = a.getGrades().stream().filter(i -> {
       if(i > 5){
         return true;
       }else{
         return false;
       }
-    }).reduce(0, (c, e) -> c + e)/a.getNotas().size();
+    }).reduce(0, (c, e) -> c + e)/a.getGrades().size();
     
     return sum;
   }
   
-  static int sumNotas2(Aluno a) {
+  static int sumNotas2(Student a) {
     Function<Integer, Integer> bonus = new Function<Integer, Integer>() {
 
       @Override
@@ -48,13 +48,13 @@ public class SumArray {
       }
     };
     
-    int sum = a.getNotas().parallelStream().map(bonus).reduce(0, (c,e) -> c + e);
+    int sum = a.getGrades().parallelStream().map(bonus).reduce(0, (c,e) -> c + e);
     
     return sum;
   }
   
-  static List<Integer> retornaNotasTodosAlunos(List<Aluno> lista) {
-    List<Integer> listaNotasTodosAluno = lista.stream().map(aluno -> aluno.getNotas()).flatMap(notas -> notas.stream()). collect(Collectors.toList());
+  static List<Integer> retornaNotasTodosAlunos(List<Student> lista) {
+    List<Integer> listaNotasTodosAluno = lista.stream().map(aluno -> aluno.getGrades()).flatMap(notas -> notas.stream()). collect(Collectors.toList());
     System.out.println(listaNotasTodosAluno.stream().reduce(0, (x,y) -> x+y));
     return listaNotasTodosAluno;
   }

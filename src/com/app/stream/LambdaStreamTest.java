@@ -3,6 +3,7 @@ package com.app.stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LambdaStreamTest {
@@ -48,6 +49,13 @@ public class LambdaStreamTest {
   //Using multi-threading distributed by cores
   System.out.println("Paralel Stream");
   lista.parallelStream().forEach(System.out::println);
+  
+  //1 -> 10
+  IntStream.range(0, 10).forEach(System.out::println);;
+  
+  //0 -> 10
+  IntStream.rangeClosed(0, 10).forEach(System.out::println);;
+  
   }
 
 }
