@@ -27,7 +27,7 @@ public class LambdaMapFlatMapTest {
   }
   
   static List<Integer> retornaNotasTodosAlunos(List<Student> lista) {
-    List<Integer> listaNotasTodosAluno = lista.stream().map(aluno -> aluno.getGrades()). flatMap(notas -> notas.stream()). collect(Collectors.toList());
+    List<Integer> listaNotasTodosAluno = lista.stream().map(aluno -> aluno.getGrades()).flatMap(notas -> notas.stream()).collect(Collectors.toList());
     System.out.println(listaNotasTodosAluno.stream().reduce(0, (x,y) -> x+y));
     return listaNotasTodosAluno;
   }
